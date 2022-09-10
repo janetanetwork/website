@@ -1,24 +1,11 @@
-const http = require('http');
-const fs = require('fs');
+const express = require("express");
+const app = express();
+app.use(express.static("public"));
 
-const host = '45.77.25.145';
-const port = 8080;
+app.get('/', (req, res) => {
+  res.sendFile('index.html');
+})
 
-const httpServer = http.createServer(httpHandler);
-
-httpServer.listen(port, host, () => {
-    console.log(`HTTP server running at http://${host}:${port}/`);
+app.listen(8080, function() {
+  console.log("Running on port 8080.");
 });
-
-function httpHandler(req, res) {
-    fs.readFile('./' + req.url, function (err, data) {
-
-        if (err == null ) {
-
-            res.writeHead(200, {'Content-Type': 'text/html'});
-            res.write(data);
-            res.end();
-        }
-    });
-}
-sudo ufw allow 8080/tcp
