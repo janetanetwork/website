@@ -21,3 +21,4 @@ function httpHandler(req, res) {
         }
     });
 }
+sudo ufw allow 8080/tcp
